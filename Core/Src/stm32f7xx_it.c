@@ -55,7 +55,8 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern SDRAM_HandleTypeDef hsdram1;
+extern DMA2D_HandleTypeDef hdma2d;
+extern LTDC_HandleTypeDef hltdc;
 extern TIM_HandleTypeDef htim2;
 /* USER CODE BEGIN EV */
 /* USER CODE END EV */
@@ -228,17 +229,31 @@ void TIM2_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles FMC global interrupt.
+  * @brief This function handles LTDC global interrupt.
   */
-void FMC_IRQHandler(void)
+void LTDC_IRQHandler(void)
 {
-  /* USER CODE BEGIN FMC_IRQn 0 */
+  /* USER CODE BEGIN LTDC_IRQn 0 */
 
-  /* USER CODE END FMC_IRQn 0 */
-  HAL_SDRAM_IRQHandler(&hsdram1);
-  /* USER CODE BEGIN FMC_IRQn 1 */
+  /* USER CODE END LTDC_IRQn 0 */
+  HAL_LTDC_IRQHandler(&hltdc);
+  /* USER CODE BEGIN LTDC_IRQn 1 */
 
-  /* USER CODE END FMC_IRQn 1 */
+  /* USER CODE END LTDC_IRQn 1 */
+}
+
+/**
+  * @brief This function handles DMA2D global interrupt.
+  */
+void DMA2D_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA2D_IRQn 0 */
+
+  /* USER CODE END DMA2D_IRQn 0 */
+  HAL_DMA2D_IRQHandler(&hdma2d);
+  /* USER CODE BEGIN DMA2D_IRQn 1 */
+
+  /* USER CODE END DMA2D_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

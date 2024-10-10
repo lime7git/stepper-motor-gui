@@ -25,6 +25,7 @@ SUBDIRS := \
 Core/Src \
 Core/Startup \
 Drivers/BSP/Components/Fonts \
+Drivers/BSP/Components/ft5336 \
 Drivers/BSP/Components/powerSTEP01 \
 Drivers/BSP/STM32746G-Discovery \
 Drivers/BSP/X-NUCLEO-IHMxx \

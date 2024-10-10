@@ -7,17 +7,20 @@
 C_SRCS += \
 D:/Workspaces/stm32f7-discovery-workspace/SPI_FullDuplex_ComPolling/Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.c \
 ../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.c \
-../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.c 
+../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.c \
+../Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_ts.c 
 
 OBJS += \
 ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.o \
 ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.o \
-./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.o 
+./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.o \
+./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_ts.o 
 
 C_DEPS += \
 ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.d \
 ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.d \
-./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.d 
+./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.d \
+./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_ts.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -29,7 +32,7 @@ Drivers/BSP/STM32746G-Discovery/%.o Drivers/BSP/STM32746G-Discovery/%.su Drivers
 clean: clean-Drivers-2f-BSP-2f-STM32746G-2d-Discovery
 
 clean-Drivers-2f-BSP-2f-STM32746G-2d-Discovery:
-	-$(RM) ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.cyclo ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.d ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.o ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.su ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.cyclo ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.d ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.o ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.su ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.cyclo ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.d ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.o ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.su
+	-$(RM) ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.cyclo ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.d ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.o ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery.su ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.cyclo ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.d ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.o ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_lcd.su ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.cyclo ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.d ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.o ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_sdram.su ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_ts.cyclo ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_ts.d ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_ts.o ./Drivers/BSP/STM32746G-Discovery/stm32746g_discovery_ts.su
 
 .PHONY: clean-Drivers-2f-BSP-2f-STM32746G-2d-Discovery
 

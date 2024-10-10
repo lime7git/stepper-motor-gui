@@ -18,9 +18,11 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "crc.h"
 #include "dma2d.h"
 #include "i2c.h"
 #include "ltdc.h"
+#include "quadspi.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
@@ -33,6 +35,8 @@
 #include "powerstep01.h"
 #include "x_nucleo_ihm03a1_stm32f4xx.h"
 #include "stm32746g_discovery_lcd.h"
+#include "stm32746g_discovery_ts.h"
+#include "stm32746g_discovery.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,6 +58,8 @@
 
 /* USER CODE BEGIN PV */
 static volatile uint16_t gLastError;
+uint16_t x;
+uint16_t y;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -81,7 +87,7 @@ int main(void)
   /* USER CODE END 1 */
 
   /* MPU Configuration--------------------------------------------------------*/
-  //MPU_Config();
+  MPU_Config();
 
   /* Enable the CPU Cache */
 
@@ -115,10 +121,43 @@ int main(void)
   MX_DMA2D_Init();
   MX_LTDC_Init();
   MX_FMC_Init();
-  MX_I2C3_Init();
+  //MX_I2C3_Init();
+  MX_CRC_Init();
+  MX_QUADSPI_Init();
   /* USER CODE BEGIN 2 */
 
-  BSP_LCD_Init();
+  TS_IO_Init();
+
+  uint32_t *externalRAM = 0xC0000000;
+  	const uint32_t size = 1000;
+
+  	//write external RAM
+  	for(int i = 0; i < size; i++)
+  	{
+  	    externalRAM[i] = 0;
+  	}
+
+  	BSP_LCD_Init();
+
+  	    // Select the LCD layer to be used using the BSP_LCD_SelectLayer() function.
+  	    //BSP_LCD_SelectLayer(0);
+  	    BSP_LCD_LayerDefaultInit(LTDC_ACTIVE_LAYER, LCD_FB_START_ADDRESS);
+  	    BSP_LCD_SelectLayer(LTDC_ACTIVE_LAYER);
+
+  	    // Enable the LCD display using the BSP_LCD_DisplayOn() function.
+  	    BSP_LCD_DisplayOn();
+
+  	    // Clear the whole LCD using BSP_LCD_Clear() function or only one specified string line using the BSP_LCD_ClearStringLine() function.
+  	    BSP_LCD_Clear(LCD_COLOR_LIGHTGRAY);
+  	    HAL_Delay(1000);
+
+
+  	    BSP_LCD_Clear(LCD_COLOR_RED);
+  	    HAL_Delay(1000);
+		BSP_LCD_Clear(LCD_COLOR_WHITE);
+
+  	    // Display a character on the specified line and column using the BSP_LCD_DisplayChar() function or a complete string line using the BSP_LCD_DisplayStringAtLine() function.
+  	    BSP_LCD_DisplayStringAt(0, 0, "TEST", CENTER_MODE);
 
   	//HAL_Delay(2000);
 
@@ -143,17 +182,8 @@ int main(void)
 
 	BSP_MotorControl_CmdSoftHiZ(0);
 
-	BSP_LCD_DisplayOn();
+	BSP_TS_Init(480, 272);
 
-	uint32_t *externalRAM = 0xC000000;
-	const uint32_t size = 1000;
-
-	//write external RAM
-	for(int i = 0; i < size; i++)
-	{
-	    externalRAM[i] = i;
-	}
-	//BSP_LCD_DisplayChar(0, 0, '7');
 
   /* USER CODE END 2 */
 
@@ -164,8 +194,19 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_GPIO_TogglePin(GPIOI, GPIO_PIN_1);
-	  HAL_Delay(250);
+
+
+	      TS_StateTypeDef state;
+	      BSP_TS_GetState(&state);
+	      if (state.touchDetected == 1)
+	      {
+	          x = state.touchX[0];
+	          y = state.touchY[0];
+	          //break point here
+	         //BSP_LCD_Clear(LCD_COLOR_WHITE);
+	          BSP_LCD_FillCircle(x, y, 10);
+	      }
+	      HAL_Delay(8);
   }
   /* USER CODE END 3 */
 }
@@ -362,36 +403,36 @@ void MyBusyInterruptHandler(void)
 
 void MPU_Config(void)
 {
-	MPU_Region_InitTypeDef MPU_InitStruct = {0};
+  MPU_Region_InitTypeDef MPU_InitStruct = {0};
 
-	  /* Disables the MPU */
-	  HAL_MPU_Disable();
+  /* Disables the MPU */
+  HAL_MPU_Disable();
 
-	  /** Initializes and configures the Region and the memory to be protected
-	  */
-	  MPU_InitStruct.Enable = MPU_REGION_ENABLE;
-	  MPU_InitStruct.Number = MPU_REGION_NUMBER0;
-	  MPU_InitStruct.BaseAddress = 0x90000000;
-	  MPU_InitStruct.Size = MPU_REGION_SIZE_256MB;
-	  MPU_InitStruct.SubRegionDisable = 0x0;
-	  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
-	  MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
-	  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
-	  MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
-	  MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
-	  MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+  MPU_InitStruct.Number = MPU_REGION_NUMBER0;
+  MPU_InitStruct.BaseAddress = 0x90000000;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_256MB;
+  MPU_InitStruct.SubRegionDisable = 0x0;
+  MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
+  MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+  MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
+  MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+  MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
+  MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
 
-	  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
 
-	  /** Initializes and configures the Region and the memory to be protected
-	  */
-	  MPU_InitStruct.Number = MPU_REGION_NUMBER1;
-	  MPU_InitStruct.Size = MPU_REGION_SIZE_16MB;
-	  MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
+  /** Initializes and configures the Region and the memory to be protected
+  */
+  MPU_InitStruct.Number = MPU_REGION_NUMBER1;
+  MPU_InitStruct.Size = MPU_REGION_SIZE_16MB;
+  MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
 
-	  HAL_MPU_ConfigRegion(&MPU_InitStruct);
-	  /* Enables the MPU */
-	  HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
+  HAL_MPU_ConfigRegion(&MPU_InitStruct);
+  /* Enables the MPU */
+  HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 
 }
 

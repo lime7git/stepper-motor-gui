@@ -13,6 +13,7 @@ RM := rm -rf
 -include Drivers/BSP/X-NUCLEO-IHMxx/subdir.mk
 -include Drivers/BSP/STM32746G-Discovery/subdir.mk
 -include Drivers/BSP/Components/powerSTEP01/subdir.mk
+-include Drivers/BSP/Components/ft5336/subdir.mk
 -include Drivers/BSP/Components/Fonts/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
