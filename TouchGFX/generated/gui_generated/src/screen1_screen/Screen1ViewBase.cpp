@@ -3,12 +3,44 @@
 /*********************************************************************************/
 #include <gui_generated/screen1_screen/Screen1ViewBase.hpp>
 #include <touchgfx/Color.hpp>
+#include <images/BitmapDatabase.hpp>
 
-Screen1ViewBase::Screen1ViewBase()
+Screen1ViewBase::Screen1ViewBase() :
+    flexButtonCallback(this, &Screen1ViewBase::flexButtonCallbackHandler)
 {
     __background.setPosition(0, 0, 480, 272);
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
+
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_BACKGROUNDS_480X272_PUZZLE_ID));
+    tiledImage1.setPosition(0, 0, 480, 272);
+    tiledImage1.setOffset(0, 0);
+    add(tiledImage1);
+
+    flexButton1.setBoxWithBorderPosition(0, 0, 48, 49);
+    flexButton1.setBorderSize(5);
+    flexButton1.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    flexButton1.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_RIGHT_50_50_E8F6FB_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_RIGHT_50_50_E8F6FB_SVG_ID));
+    flexButton1.setIconXY(0, 0);
+    flexButton1.setAction(flexButtonCallback);
+    flexButton1.setPosition(355, 112, 48, 49);
+    add(flexButton1);
+
+    flexButton1_1.setBoxWithBorderPosition(0, 0, 48, 49);
+    flexButton1_1.setBorderSize(5);
+    flexButton1_1.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
+    flexButton1_1.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_LEFT_50_50_E8F6FB_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_LEFT_50_50_E8F6FB_SVG_ID));
+    flexButton1_1.setIconXY(0, 0);
+    flexButton1_1.setAction(flexButtonCallback);
+    flexButton1_1.setPosition(75, 112, 48, 49);
+    add(flexButton1_1);
+
+    flexButton2.setBoxWithBorderPosition(0, 0, 98, 50);
+    flexButton2.setBorderSize(5);
+    flexButton2.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(153, 0, 0), touchgfx::Color::getColorFromRGB(255, 0, 4), touchgfx::Color::getColorFromRGB(102, 0, 0), touchgfx::Color::getColorFromRGB(250, 12, 12));
+    flexButton2.setAction(flexButtonCallback);
+    flexButton2.setPosition(191, 111, 98, 50);
+    add(flexButton2);
 }
 
 Screen1ViewBase::~Screen1ViewBase()
@@ -19,4 +51,29 @@ Screen1ViewBase::~Screen1ViewBase()
 void Screen1ViewBase::setupScreen()
 {
 
+}
+
+void Screen1ViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
+{
+    if (&src == &flexButton1)
+    {
+        //leftArrow
+        //When flexButton1 clicked call virtual function
+        //Call leftArrow
+        leftArrow();
+    }
+    if (&src == &flexButton1_1)
+    {
+        //rightArrow
+        //When flexButton1_1 clicked call virtual function
+        //Call rightArrow
+        rightArrow();
+    }
+    if (&src == &flexButton2)
+    {
+        //stop
+        //When flexButton2 clicked call virtual function
+        //Call stop
+        stop();
+    }
 }

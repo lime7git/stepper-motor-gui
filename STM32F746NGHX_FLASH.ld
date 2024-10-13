@@ -196,4 +196,11 @@ SECTIONS
     *(.gnu.linkonce.r.*)
     . = ALIGN(0x4);
   } >SDRAM
+  
+  ExtFlashSection :
+	{
+		*(ExtFlashSection ExtFlashSection.*)
+		*(.gnu.linkonce.r.*)
+        . = ALIGN(0x4);
+	} >FLASH
 }
