@@ -28,6 +28,7 @@
 #include "usart.h"
 #include "gpio.h"
 #include "fmc.h"
+#include "app_touchgfx.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -121,43 +122,44 @@ int main(void)
   MX_DMA2D_Init();
   MX_LTDC_Init();
   MX_FMC_Init();
-  //MX_I2C3_Init();
+  MX_I2C3_Init();
   MX_CRC_Init();
   MX_QUADSPI_Init();
+  MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
 
-  TS_IO_Init();
-
-  uint32_t *externalRAM = 0xC0000000;
-  	const uint32_t size = 1000;
-
-  	//write external RAM
-  	for(int i = 0; i < size; i++)
-  	{
-  	    externalRAM[i] = 0;
-  	}
-
-  	BSP_LCD_Init();
-
-  	    // Select the LCD layer to be used using the BSP_LCD_SelectLayer() function.
-  	    //BSP_LCD_SelectLayer(0);
-  	    BSP_LCD_LayerDefaultInit(LTDC_ACTIVE_LAYER, LCD_FB_START_ADDRESS);
-  	    BSP_LCD_SelectLayer(LTDC_ACTIVE_LAYER);
-
-  	    // Enable the LCD display using the BSP_LCD_DisplayOn() function.
-  	    BSP_LCD_DisplayOn();
-
-  	    // Clear the whole LCD using BSP_LCD_Clear() function or only one specified string line using the BSP_LCD_ClearStringLine() function.
-  	    BSP_LCD_Clear(LCD_COLOR_LIGHTGRAY);
-  	    HAL_Delay(1000);
-
-
-  	    BSP_LCD_Clear(LCD_COLOR_RED);
-  	    HAL_Delay(1000);
-		BSP_LCD_Clear(LCD_COLOR_WHITE);
-
-  	    // Display a character on the specified line and column using the BSP_LCD_DisplayChar() function or a complete string line using the BSP_LCD_DisplayStringAtLine() function.
-  	    BSP_LCD_DisplayStringAt(0, 0, "TEST", CENTER_MODE);
+//  TS_IO_Init();
+//
+//  uint32_t *externalRAM = 0xC0000000;
+//  	const uint32_t size = 1000;
+//
+//  	//write external RAM
+//  	for(int i = 0; i < size; i++)
+//  	{
+//  	    externalRAM[i] = 0;
+//  	}
+//
+//  	BSP_LCD_Init();
+//
+//  	    // Select the LCD layer to be used using the BSP_LCD_SelectLayer() function.
+//  	    //BSP_LCD_SelectLayer(0);
+//  	    BSP_LCD_LayerDefaultInit(LTDC_ACTIVE_LAYER, LCD_FB_START_ADDRESS);
+//  	    BSP_LCD_SelectLayer(LTDC_ACTIVE_LAYER);
+//
+//  	    // Enable the LCD display using the BSP_LCD_DisplayOn() function.
+//  	    BSP_LCD_DisplayOn();
+//
+//  	    // Clear the whole LCD using BSP_LCD_Clear() function or only one specified string line using the BSP_LCD_ClearStringLine() function.
+//  	    BSP_LCD_Clear(LCD_COLOR_LIGHTGRAY);
+//  	    HAL_Delay(1000);
+//
+//
+//  	    BSP_LCD_Clear(LCD_COLOR_RED);
+//  	    HAL_Delay(1000);
+//		BSP_LCD_Clear(LCD_COLOR_WHITE);
+//
+//  	    // Display a character on the specified line and column using the BSP_LCD_DisplayChar() function or a complete string line using the BSP_LCD_DisplayStringAtLine() function.
+//  	    BSP_LCD_DisplayStringAt(0, 0, "TEST", CENTER_MODE);
 
   	//HAL_Delay(2000);
 
@@ -181,8 +183,8 @@ int main(void)
 	//BSP_MotorControl_WaitWhileActive(0);
 
 	BSP_MotorControl_CmdSoftHiZ(0);
-
-	BSP_TS_Init(480, 272);
+//
+//	BSP_TS_Init(480, 272);
 
 
   /* USER CODE END 2 */
@@ -193,20 +195,21 @@ int main(void)
   {
     /* USER CODE END WHILE */
 
+  MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
 
 
-	      TS_StateTypeDef state;
-	      BSP_TS_GetState(&state);
-	      if (state.touchDetected == 1)
-	      {
-	          x = state.touchX[0];
-	          y = state.touchY[0];
-	          //break point here
-	         //BSP_LCD_Clear(LCD_COLOR_WHITE);
-	          BSP_LCD_FillCircle(x, y, 10);
-	      }
-	      HAL_Delay(8);
+//	      TS_StateTypeDef state;
+//	      BSP_TS_GetState(&state);
+//	      if (state.touchDetected == 1)
+//	      {
+//	          x = state.touchX[0];
+//	          y = state.touchY[0];
+//	          //break point here
+//	         //BSP_LCD_Clear(LCD_COLOR_WHITE);
+//	          BSP_LCD_FillCircle(x, y, 10);
+//	      }
+//	      HAL_Delay(8);
   }
   /* USER CODE END 3 */
 }

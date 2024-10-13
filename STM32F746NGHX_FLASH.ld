@@ -185,4 +185,15 @@ SECTIONS
   }
 
   .ARM.attributes 0 : { *(.ARM.attributes) }
+  
+  BufferSection (NOLOAD) :
+  {
+    *(TouchGFX_Framebuffer TouchGFX_Framebuffer.*)
+    *(.gnu.linkonce.r.*)
+    . = ALIGN(0x4);
+    
+    *(Video_RGB_Buffer Video_RGB_Buffer.*)
+    *(.gnu.linkonce.r.*)
+    . = ALIGN(0x4);
+  } >SDRAM
 }
