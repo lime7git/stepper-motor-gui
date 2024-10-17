@@ -2,6 +2,100 @@
   "Application": {
     "Screens": [
       {
+        "Name": "Initial",
+        "CanvasBufferSize": 7200,
+        "Components": [
+          {
+            "Type": "TiledImage",
+            "Name": "tiledImage1",
+            "Width": 480,
+            "Height": 272,
+            "FileName": "__generated\\alternate_theme_images_backgrounds_480x272_puzzle.png",
+            "Alpha": 0
+          },
+          {
+            "Type": "CircleProgress",
+            "Name": "circleProgress1",
+            "X": 185,
+            "Y": 156,
+            "Width": 110,
+            "Height": 110,
+            "Color": {
+              "Red": 8,
+              "Green": 9,
+              "Blue": 9
+            },
+            "CenterX": 55.0,
+            "CenterY": 55.0,
+            "Radius": 50.0,
+            "LineWidth": 10.0,
+            "StartAngle": -90.0,
+            "EndAngle": 270.0,
+            "CapPrecision": "Round",
+            "Alpha": 0,
+            "FileNameBackground": "__generated\\dark_theme_images_widgets_circleprogress_backgrounds_small.png",
+            "ProgressRangeMax": 100,
+            "ProgressRangeSteps": 50
+          }
+        ],
+        "Interactions": [
+          {
+            "InteractionName": "handleTickEvent1",
+            "Trigger": {
+              "Type": "TriggerOnEveryTick",
+              "TickCount": 1
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "handleTickEvent1"
+            }
+          },
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerWhen",
+              "ActionCustomTypeName": "Call Initial changeToScreen1"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionBlock",
+              "ActionComponent": "Screen1"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 500,
+              "ActionComponent": "circleProgress1"
+            }
+          },
+          {
+            "InteractionName": "Interaction3",
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 500,
+              "ActionComponent": "tiledImage1"
+            }
+          }
+        ],
+        "CustomActions": [
+          {
+            "Name": "changeToScreen1"
+          }
+        ]
+      },
+      {
         "Name": "Screen1",
         "Components": [
           {
@@ -14,12 +108,14 @@
           {
             "Type": "FlexButton",
             "Name": "flexButton1",
-            "X": 355,
+            "X": 356,
             "Y": 112,
             "Width": 48,
             "Height": 49,
             "ButtonTrigger": {
-              "Type": "ClickButtonTrigger"
+              "Type": "RepeatButtonTrigger",
+              "Delay": 200,
+              "Interval": 50
             },
             "ButtonStyles": [
               {
@@ -61,7 +157,9 @@
             "Width": 48,
             "Height": 49,
             "ButtonTrigger": {
-              "Type": "ClickButtonTrigger"
+              "Type": "RepeatButtonTrigger",
+              "Delay": 200,
+              "Interval": 50
             },
             "ButtonStyles": [
               {
@@ -74,7 +172,7 @@
                 "Width": 48,
                 "Height": 49,
                 "LockToFlexButtonSize": true,
-                "BorderSize": 5,
+                "BorderSize": 2,
                 "ColorReleased": {
                   "Green": 102,
                   "Blue": 153
@@ -175,7 +273,7 @@
       "Height": 272
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "Screen1",
+    "StartupScreenName": "Initial",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",

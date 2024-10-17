@@ -17,17 +17,21 @@ Screen1ViewBase::Screen1ViewBase() :
     tiledImage1.setOffset(0, 0);
     add(tiledImage1);
 
+    flexButton1.setDelay(12);
+    flexButton1.setInterval(3);
     flexButton1.setBoxWithBorderPosition(0, 0, 48, 49);
     flexButton1.setBorderSize(5);
     flexButton1.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
     flexButton1.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_RIGHT_50_50_E8F6FB_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_RIGHT_50_50_E8F6FB_SVG_ID));
     flexButton1.setIconXY(0, 0);
     flexButton1.setAction(flexButtonCallback);
-    flexButton1.setPosition(355, 112, 48, 49);
+    flexButton1.setPosition(356, 112, 48, 49);
     add(flexButton1);
 
+    flexButton1_1.setDelay(12);
+    flexButton1_1.setInterval(3);
     flexButton1_1.setBoxWithBorderPosition(0, 0, 48, 49);
-    flexButton1_1.setBorderSize(5);
+    flexButton1_1.setBorderSize(2);
     flexButton1_1.setBoxWithBorderColors(touchgfx::Color::getColorFromRGB(0, 102, 153), touchgfx::Color::getColorFromRGB(0, 153, 204), touchgfx::Color::getColorFromRGB(0, 51, 102), touchgfx::Color::getColorFromRGB(51, 102, 153));
     flexButton1_1.setIconBitmaps(Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_LEFT_50_50_E8F6FB_SVG_ID), Bitmap(BITMAP_ICON_THEME_IMAGES_HARDWARE_KEYBOARD_ARROW_LEFT_50_50_E8F6FB_SVG_ID));
     flexButton1_1.setIconXY(0, 0);

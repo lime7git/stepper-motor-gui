@@ -1,8 +1,12 @@
 #include <gui/screen1_screen/Screen1View.hpp>
 
+//#define SIMULATOR
+
+#ifndef SIMULATOR
 #define bool LIBRARY_bool
 #include "x_nucleo_ihmxx.h"
 #undef bool
+#endif
 
 Screen1View::Screen1View()
 {
@@ -21,16 +25,19 @@ void Screen1View::tearDownScreen()
 
 void Screen1View::leftArrow()
 {
-	// Override and implement this function in Screen1
-	BSP_MotorControl_Move(0, BACKWARD, 1600);
+#ifndef SIMULATOR
+	if(flexButton1.getPressed() == true) BSP_MotorControl_Move(0, BACKWARD, 200);
+#endif
 }
 void Screen1View::rightArrow()
 {
-	// Override and implement this function in Screen1
-	BSP_MotorControl_Move(0, FORWARD, 1600);
+#ifndef SIMULATOR
+	BSP_MotorControl_Move(0, FORWARD, 200);
+#endif
 }
 void Screen1View::stop()
 {
-	// Override and implement this function in Screen1
+#ifndef SIMULATOR
 	BSP_MotorControl_CmdSoftHiZ(0);
+#endif
 }
