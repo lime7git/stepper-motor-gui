@@ -17,10 +17,18 @@ void InitialView::tearDownScreen()
 
 void InitialView::handleTickEvent()
 {
-		circleProgress1.setValue(circleProgress1.getValue() + 1);
+	if(transitionEnds)
+	{
+		initializeProgress.setValue(initializeProgress.getValue() + 1);
 
-		if(circleProgress1.getValue() == 100)
+		if(initializeProgress.getValue() == 100)
 		{
 			changeToScreen1();
 		}
+	}
+}
+
+void InitialView::screenTransitionEnds()
+{
+	transitionEnds = true;
 }

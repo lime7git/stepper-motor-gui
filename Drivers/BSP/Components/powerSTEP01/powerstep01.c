@@ -164,7 +164,7 @@ motorDrv_t   powerstep01Drv=
   Powerstep01_CmdHardStop,             //void (*HardStop)(uint8_t);
   Powerstep01_CmdMove,                 //void (*Move)(uint8_t, motorDir_t, uint32_t );
   0,                                   //void (*ResetAllDevices)(void);
-  0,                                   //void (*Run)(uint8_t, motorDir_t);
+  Powerstep01_CmdRun,                  //void (*Run)(uint8_t, motorDir_t, uint32_t );
   0,                                   //bool(*SetAcceleration)(uint8_t ,uint16_t );
   0,                                   //bool(*SetDeceleration)(uint8_t , uint16_t );
   Powerstep01_SetHome,                 //void (*SetHome)(uint8_t, int32_t);

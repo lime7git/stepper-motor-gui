@@ -23,8 +23,10 @@ public:
     // Initial
     void gotoInitialScreenNoTransition();
 
-    // Screen1
-    void gotoScreen1ScreenBlockTransition();
+    void gotoInitialScreenBlockTransition();
+
+    // Main
+    void gotoMainScreenBlockTransition();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
@@ -34,8 +36,10 @@ protected:
     // Initial
     void gotoInitialScreenNoTransitionImpl();
 
-    // Screen1
-    void gotoScreen1ScreenBlockTransitionImpl();
+    void gotoInitialScreenBlockTransitionImpl();
+
+    // Main
+    void gotoMainScreenBlockTransitionImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP

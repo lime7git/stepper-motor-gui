@@ -135,7 +135,7 @@ void BSP_MotorControl_GoTo(uint8_t deviceId, int32_t targetPosition);
 void BSP_MotorControl_HardStop(uint8_t deviceId); 
 void BSP_MotorControl_Move(uint8_t deviceId, motorDir_t direction, uint32_t stepCount); 
 void BSP_MotorControl_ResetAllDevices(void); 
-void BSP_MotorControl_Run(uint8_t deviceId, motorDir_t direction); 
+void BSP_MotorControl_Run(uint8_t deviceId, motorDir_t direction, uint32_t speed);
 bool BSP_MotorControl_SetAcceleration(uint8_t deviceId,uint16_t newAcc); 
 bool BSP_MotorControl_SetDeceleration(uint8_t deviceId, uint16_t newDec); 
 void BSP_MotorControl_SetHome(uint8_t deviceId, int32_t homePosition);

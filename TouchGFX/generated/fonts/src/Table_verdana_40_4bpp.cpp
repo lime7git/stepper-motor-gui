@@ -4,7 +4,25 @@
 
 FONT_TABLE_LOCATION_FLASH_PRAGMA
 KEEP extern const touchgfx::GlyphNode glyphs_verdana_40_4bpp[] FONT_TABLE_LOCATION_FLASH_ATTRIBUTE = {
-    {     0, 0x003F,  17,  31,  31,   3,  22,   0,   0, 0x00 }
+    {     0, 0x0020,   0,   0,   0,   0,  14,   0,   0, 0x00 },
+    {     0, 0x002D,  13,   4,  15,   3,  18,   0,   3, 0x00 },
+    {    28, 0x0030,  21,  32,  31,   2,  25,   0,   0, 0x00 },
+    {   380, 0x0031,  17,  30,  30,   5,  25,   0,   0, 0x00 },
+    {   650, 0x003F,  17,  31,  31,   3,  22,   3,   1, 0x00 },
+    {   929, 0x0047,  27,  32,  31,   2,  31,   4,   1, 0x00 },
+    {  1377, 0x0049,  13,  30,  30,   2,  17,   5,   1, 0x00 },
+    {  1587, 0x004F,  28,  32,  31,   2,  31,   6,   1, 0x00 },
+    {  2035, 0x0050,  20,  30,  30,   3,  24,   0,   0, 0x00 },
+    {  2335, 0x0053,  23,  32,  31,   2,  27,   0,   0, 0x00 },
+    {  2719, 0x0054,  25,  30,  30,   0,  25,   7,   4, 0x00 },
+    {  3109, 0x0055,  23,  31,  30,   3,  29,   0,   0, 0x00 },
+    {  3481, 0x0065,  20,  24,  23,   2,  24,  11,   2, 0x00 },
+    {  3721, 0x006F,  21,  24,  23,   2,  24,  13,   2, 0x00 },
+    {  3985, 0x0070,  20,  31,  23,   3,  25,   0,   0, 0x00 },
+    {  4295, 0x0072,  15,  22,  22,   3,  17,  15,   1, 0x00 },
+    {  4471, 0x0073,  18,  24,  23,   2,  21,  16,   1, 0x00 },
+    {  4687, 0x0074,  14,  30,  29,   1,  16,   0,   0, 0x00 },
+    {  4897, 0x0077,  30,  22,  22,   1,  33,  17,   1, 0x00 }
 };
 
 // verdana_40_4bpp
@@ -22,6 +40,6 @@ touchgfx::GeneratedFont& getFont_verdana_40_4bpp();
 
 touchgfx::GeneratedFont& getFont_verdana_40_4bpp()
 {
-    static touchgfx::GeneratedFont verdana_40_4bpp(glyphs_verdana_40_4bpp, 1, 40, 40, 0, 0, 4, 1, 0, 0, unicodes_verdana_40_4bpp, kerning_verdana_40_4bpp, 63, 0, 0, 0);
+    static touchgfx::GeneratedFont verdana_40_4bpp(glyphs_verdana_40_4bpp, 19, 48, 40, 0, 0, 4, 1, 0, 1, unicodes_verdana_40_4bpp, kerning_verdana_40_4bpp, 63, 0, 0, 0);
     return verdana_40_4bpp;
 }

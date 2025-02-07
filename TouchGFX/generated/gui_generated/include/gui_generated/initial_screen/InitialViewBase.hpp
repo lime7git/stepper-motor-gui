@@ -11,6 +11,8 @@
 #include <touchgfx/widgets/TiledImage.hpp>
 #include <touchgfx/containers/progress_indicators/CircleProgress.hpp>
 #include <touchgfx/widgets/canvas/PainterRGB565.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/EasingEquations.hpp>
 #include <touchgfx/mixins/FadeAnimator.hpp>
 
@@ -20,21 +22,17 @@ public:
     InitialViewBase();
     virtual ~InitialViewBase();
     virtual void setupScreen();
-    virtual void handleTickEvent();
     virtual void transitionBegins();
 
     /*
      * Custom Actions
      */
-    virtual void changeToScreen1();
-
-    /*
-     * Virtual Action Handlers
-     */
-    virtual void handleTickEvent1()
+    virtual void screenTransitionEnds()
     {
-        // Override and implement this function in Initial
+        // Override and implement this function in Screen1
     }
+    
+    virtual void changeToScreen1();
 
 protected:
     FrontendApplication& application() {
@@ -45,9 +43,11 @@ protected:
      * Member Declarations
      */
     touchgfx::Box __background;
-    touchgfx::FadeAnimator< touchgfx::TiledImage > tiledImage1;
-    touchgfx::FadeAnimator< touchgfx::CircleProgress > circleProgress1;
-    touchgfx::PainterRGB565 circleProgress1Painter;
+    touchgfx::FadeAnimator< touchgfx::TiledImage > background;
+    touchgfx::FadeAnimator< touchgfx::CircleProgress > initializeProgress;
+    touchgfx::PainterRGB565 initializeProgressPainter;
+    touchgfx::FadeAnimator< touchgfx::ButtonWithLabel > initializeButton;
+    touchgfx::FadeAnimator< touchgfx::TextArea > logo;
 
 private:
 
@@ -56,6 +56,18 @@ private:
      */
     static const uint32_t CANVAS_BUFFER_SIZE = 7200;
     uint8_t canvasBuffer[CANVAS_BUFFER_SIZE];
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback < InitialViewBase, const touchgfx::FadeAnimator<touchgfx::CircleProgress>& > interaction7EndedCallback;
+    touchgfx::Callback<InitialViewBase, const touchgfx::AbstractButton&> buttonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void interaction7EndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::CircleProgress>& comp);
+    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

@@ -5,8 +5,11 @@
 #include <touchgfx/canvas_widget_renderer/CanvasWidgetRenderer.hpp>
 #include <touchgfx/Color.hpp>
 #include <images/BitmapDatabase.hpp>
+#include <texts/TextKeysAndLanguages.hpp>
 
-InitialViewBase::InitialViewBase()
+InitialViewBase::InitialViewBase() :
+    interaction7EndedCallback(this, &InitialViewBase::interaction7EndedCallbackHandler),
+    buttonCallback(this, &InitialViewBase::buttonCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
     
@@ -14,26 +17,42 @@ InitialViewBase::InitialViewBase()
     __background.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
     add(__background);
 
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_BACKGROUNDS_480X272_PUZZLE_ID));
-    tiledImage1.setPosition(0, 0, 480, 272);
-    tiledImage1.setOffset(0, 0);
-    tiledImage1.setAlpha(0);
-    add(tiledImage1);
+    background.setBitmap(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_BACKGROUNDS_480X272_PUZZLE_ID));
+    background.setPosition(0, 0, 480, 272);
+    background.setOffset(0, 0);
+    background.setAlpha(0);
+    add(background);
 
-    circleProgress1.setXY(185, 156);
-    circleProgress1.setProgressIndicatorPosition(0, 0, 110, 110);
-    circleProgress1.setRange(0, 100, 50, 0);
-    circleProgress1.setCenter(55, 55);
-    circleProgress1.setRadius(50);
-    circleProgress1.setLineWidth(10);
-    circleProgress1.setStartEndAngle(-90, 270);
-    circleProgress1.setCapPrecision(10);
-    circleProgress1.setBackground(touchgfx::Bitmap(BITMAP_DARK_THEME_IMAGES_WIDGETS_CIRCLEPROGRESS_BACKGROUNDS_SMALL_ID));
-    circleProgress1Painter.setColor(touchgfx::Color::getColorFromRGB(8, 9, 9));
-    circleProgress1.setPainter(circleProgress1Painter);
-    circleProgress1.setValue(0);
-    circleProgress1.setAlpha(0);
-    add(circleProgress1);
+    initializeProgress.setXY(185, 155);
+    initializeProgress.setProgressIndicatorPosition(0, 0, 110, 110);
+    initializeProgress.setRange(0, 100, 50, 0);
+    initializeProgress.setCenter(55, 55);
+    initializeProgress.setRadius(50);
+    initializeProgress.setLineWidth(10);
+    initializeProgress.setStartEndAngle(-90, 270);
+    initializeProgress.setCapPrecision(10);
+    initializeProgress.setBackground(touchgfx::Bitmap(BITMAP_DARK_THEME_IMAGES_WIDGETS_CIRCLEPROGRESS_BACKGROUNDS_SMALL_ID));
+    initializeProgressPainter.setColor(touchgfx::Color::getColorFromRGB(8, 9, 9));
+    initializeProgress.setPainter(initializeProgressPainter);
+    initializeProgress.setValue(0);
+    initializeProgress.setAlpha(0);
+    add(initializeProgress);
+
+    initializeButton.setXY(210, 180);
+    initializeButton.setBitmaps(touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUND_TINY_OUTLINE_NORMAL_ID), touchgfx::Bitmap(BITMAP_ALTERNATE_THEME_IMAGES_WIDGETS_BUTTON_ICON_ROUND_TINY_OUTLINE_PRESSED_ID));
+    initializeButton.setLabelText(touchgfx::TypedText(T___SINGLEUSE_V3V5));
+    initializeButton.setLabelColor(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    initializeButton.setLabelColorPressed(touchgfx::Color::getColorFromRGB(255, 255, 255));
+    initializeButton.setAlpha(0);
+    initializeButton.setAction(buttonCallback);
+    add(initializeButton);
+
+    logo.setXY(50, 75);
+    logo.setColor(touchgfx::Color::getColorFromRGB(0, 0, 0));
+    logo.setLinespacing(0);
+    logo.setTypedText(touchgfx::TypedText(T___SINGLEUSE_C4VB));
+    logo.setAlpha(0);
+    add(logo);
 }
 
 InitialViewBase::~InitialViewBase()
@@ -46,33 +65,61 @@ void InitialViewBase::setupScreen()
     transitionBegins();
 }
 
-void InitialViewBase::handleTickEvent()
+void InitialViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
-    //handleTickEvent1
-    //When every N tick call virtual function
-    //Call handleTickEvent1
-    handleTickEvent1();
+    if (&src == &initializeButton)
+    {
+        //Interaction6
+        //When initializeButton clicked fade initializeButton
+        //Fade initializeButton to alpha:0 with CubicOut easing in 200 ms (12 Ticks)
+        initializeButton.clearFadeAnimationEndedAction();
+        initializeButton.startFadeAnimation(0, 12, touchgfx::EasingEquations::cubicEaseOut);
+        //Interaction7
+        //When initializeButton clicked fade initializeProgress
+        //Fade initializeProgress to alpha:150 with CubicIn easing in 200 ms (12 Ticks)
+        initializeProgress.clearFadeAnimationEndedAction();
+        initializeProgress.startFadeAnimation(150, 12, touchgfx::EasingEquations::cubicEaseIn);
+        initializeProgress.setFadeAnimationEndedAction(interaction7EndedCallback);
+    }
 }
 
 void InitialViewBase::changeToScreen1()
 {
     //Interaction1
-    //When changeToScreen1 is called change screen to Screen1
-    //Go to Screen1 with block transition
-    application().gotoScreen1ScreenBlockTransition();
+    //When changeToScreen1 is called change screen to Main
+    //Go to Main with block transition
+    application().gotoMainScreenBlockTransition();
 }
 
 void InitialViewBase::transitionBegins()
 {
-    //Interaction2
-    //When screen transition begins fade circleProgress1
-    //Fade circleProgress1 to alpha:255 with LinearIn easing in 500 ms (30 Ticks)
-    circleProgress1.clearFadeAnimationEndedAction();
-    circleProgress1.startFadeAnimation(255, 30, touchgfx::EasingEquations::linearEaseIn);
-
     //Interaction3
-    //When screen transition begins fade tiledImage1
-    //Fade tiledImage1 to alpha:255 with LinearIn easing in 500 ms (30 Ticks)
-    tiledImage1.clearFadeAnimationEndedAction();
-    tiledImage1.startFadeAnimation(255, 30, touchgfx::EasingEquations::linearEaseIn);
+    //When screen transition begins fade background
+    //Fade background to alpha:255 with LinearIn easing in 1000 ms (60 Ticks)
+    background.clearFadeAnimationEndedAction();
+    background.setFadeAnimationDelay(15);
+    background.startFadeAnimation(255, 60, touchgfx::EasingEquations::linearEaseIn);
+
+    //Interaction5
+    //When screen transition begins fade initializeButton
+    //Fade initializeButton to alpha:200 with LinearIn easing in 1000 ms (60 Ticks)
+    initializeButton.clearFadeAnimationEndedAction();
+    initializeButton.setFadeAnimationDelay(15);
+    initializeButton.startFadeAnimation(200, 60, touchgfx::EasingEquations::linearEaseIn);
+
+    //Interaction8
+    //When screen transition begins fade logo
+    //Fade logo to alpha:200 with LinearIn easing in 1000 ms (60 Ticks)
+    logo.clearFadeAnimationEndedAction();
+    logo.setFadeAnimationDelay(15);
+    logo.startFadeAnimation(200, 60, touchgfx::EasingEquations::linearEaseIn);
+}
+
+void InitialViewBase::interaction7EndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::CircleProgress>& comp)
+{
+    //Interaction4
+    //When Interaction7 completed call screenTransitionEnds on Initial
+    //Call screenTransitionEnds
+    screenTransitionEnds();
+
 }

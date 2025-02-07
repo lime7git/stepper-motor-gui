@@ -539,11 +539,11 @@ void BSP_MotorControl_ResetAllDevices(void)
  * @note For unidirectionnal brush DC motor, direction parameter 
  * has no effect
  **********************************************************/
-void BSP_MotorControl_Run(uint8_t deviceId, motorDir_t direction)
+void BSP_MotorControl_Run(uint8_t deviceId, motorDir_t direction, uint32_t speed)
 {
   if ((motorDrvHandle != 0)&&(motorDrvHandle->Run != 0))
   {
-    motorDrvHandle->Run(deviceId, direction); 
+    motorDrvHandle->Run(deviceId, direction, speed);
   }
   else
   {

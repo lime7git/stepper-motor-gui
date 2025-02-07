@@ -258,7 +258,7 @@ typedef struct
   /// Function pointer to ResetAllDevices
   void (*ResetAllDevices)(void);
   /// Function pointer to Run
-  void (*Run)(uint8_t, motorDir_t);
+  void (*Run)(uint8_t, motorDir_t, uint32_t);
   /// Function pointer to SetAcceleration
   bool(*SetAcceleration)(uint8_t ,uint16_t );
   /// Function pointer to SetDeceleration

@@ -12,10 +12,10 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     virtual void handleTickEvent();
+    virtual void screenTransitionEnds();
 
 protected:
-    bool increase = true;
-    uint16_t tick = 0;
+    bool transitionEnds = false;
 };
 
 #endif // INITIALVIEW_HPP

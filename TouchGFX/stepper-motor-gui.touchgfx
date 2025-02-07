@@ -7,17 +7,18 @@
         "Components": [
           {
             "Type": "TiledImage",
-            "Name": "tiledImage1",
+            "Name": "background",
             "Width": 480,
             "Height": 272,
+            "LockPosition": true,
             "FileName": "__generated\\alternate_theme_images_backgrounds_480x272_puzzle.png",
             "Alpha": 0
           },
           {
             "Type": "CircleProgress",
-            "Name": "circleProgress1",
+            "Name": "initializeProgress",
             "X": 185,
-            "Y": 156,
+            "Y": 155,
             "Width": 110,
             "Height": 110,
             "Color": {
@@ -36,20 +37,45 @@
             "FileNameBackground": "__generated\\dark_theme_images_widgets_circleprogress_backgrounds_small.png",
             "ProgressRangeMax": 100,
             "ProgressRangeSteps": 50
+          },
+          {
+            "Type": "ButtonWithLabel",
+            "Name": "initializeButton",
+            "X": 210,
+            "Y": 180,
+            "Width": 60,
+            "Height": 60,
+            "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_round_tiny_outline_pressed.png",
+            "Released": "__generated\\alternate_theme_images_widgets_button_icon_round_tiny_outline_normal.png",
+            "Alpha": 0,
+            "TextId": "__SingleUse_V3V5",
+            "ReleasedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "PressedColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextRotation": "0",
+            "Preset": "alternate_theme\\presets\\button\\icon\\round\\tiny_outline_normal.json"
+          },
+          {
+            "Type": "TextArea",
+            "Name": "logo",
+            "X": 50,
+            "Y": 75,
+            "Width": 380,
+            "Height": 48,
+            "TextId": "__SingleUse_C4VB",
+            "TextRotation": "0",
+            "Alpha": 0,
+            "AutoSize": true
           }
         ],
         "Interactions": [
-          {
-            "InteractionName": "handleTickEvent1",
-            "Trigger": {
-              "Type": "TriggerOnEveryTick",
-              "TickCount": 1
-            },
-            "Action": {
-              "Type": "ActionCustom",
-              "FunctionName": "handleTickEvent1"
-            }
-          },
           {
             "InteractionName": "Interaction1",
             "Trigger": {
@@ -59,20 +85,7 @@
             "Action": {
               "Type": "ActionGotoScreen",
               "ScreenTransitionType": "ScreenTransitionBlock",
-              "ActionComponent": "Screen1"
-            }
-          },
-          {
-            "InteractionName": "Interaction2",
-            "Trigger": {
-              "Type": "TriggerScreenTransitionBegins"
-            },
-            "Action": {
-              "Type": "ActionFade",
-              "Easing": "Linear",
-              "EasingOption": "In",
-              "Duration": 500,
-              "ActionComponent": "circleProgress1"
+              "ActionComponent": "Main"
             }
           },
           {
@@ -84,147 +97,740 @@
               "Type": "ActionFade",
               "Easing": "Linear",
               "EasingOption": "In",
-              "Duration": 500,
-              "ActionComponent": "tiledImage1"
+              "Duration": 1000,
+              "AnimationDelay": 250,
+              "ActionComponent": "background"
+            }
+          },
+          {
+            "InteractionName": "Interaction4",
+            "Trigger": {
+              "Type": "TriggerInteractionCompleted",
+              "InteractionToTriggerOn": "Interaction7"
+            },
+            "Action": {
+              "Type": "ActionCustom2",
+              "ActionCustomTypeName": "Call Initial screenTransitionEnds",
+              "ActionComponent": "Initial"
+            }
+          },
+          {
+            "InteractionName": "Interaction5",
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Alpha": 200,
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 1000,
+              "AnimationDelay": 250,
+              "ActionComponent": "initializeButton"
+            }
+          },
+          {
+            "InteractionName": "Interaction6",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "initializeButton"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Alpha": 0,
+              "Easing": "Cubic",
+              "EasingOption": "Out",
+              "Duration": 200,
+              "ActionComponent": "initializeButton"
+            }
+          },
+          {
+            "InteractionName": "Interaction7",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "initializeButton"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Alpha": 150,
+              "Easing": "Cubic",
+              "EasingOption": "In",
+              "Duration": 200,
+              "ActionComponent": "initializeProgress"
+            }
+          },
+          {
+            "InteractionName": "Interaction8",
+            "Trigger": {
+              "Type": "TriggerScreenTransitionBegins"
+            },
+            "Action": {
+              "Type": "ActionFade",
+              "Alpha": 200,
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 1000,
+              "AnimationDelay": 250,
+              "ActionComponent": "logo"
             }
           }
         ],
         "CustomActions": [
           {
             "Name": "changeToScreen1"
+          },
+          {
+            "Name": "screenTransitionEnds"
           }
         ]
       },
       {
-        "Name": "Screen1",
+        "Name": "Main",
+        "CanvasBufferSize": 7200,
         "Components": [
           {
             "Type": "TiledImage",
-            "Name": "tiledImage1",
+            "Name": "background",
+            "Y": 1,
             "Width": 480,
             "Height": 272,
+            "LockPosition": true,
             "FileName": "__generated\\alternate_theme_images_backgrounds_480x272_puzzle.png"
           },
           {
-            "Type": "FlexButton",
-            "Name": "flexButton1",
-            "X": 356,
-            "Y": 112,
-            "Width": 48,
-            "Height": 49,
-            "ButtonTrigger": {
-              "Type": "RepeatButtonTrigger",
-              "Delay": 200,
-              "Interval": 50
-            },
-            "ButtonStyles": [
+            "Type": "Container",
+            "Name": "moveContainer",
+            "X": 45,
+            "Width": 435,
+            "Height": 272,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
               {
-                "Type": "IconButtonStyle",
-                "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_right_50_50_E8F6FB.svg.png",
-                "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_right_50_50_E8F6FB.svg.png"
-              },
-              {
-                "Type": "BoxWithBorderButtonStyle",
-                "Width": 48,
-                "Height": 49,
-                "LockToFlexButtonSize": true,
-                "BorderSize": 5,
-                "ColorReleased": {
-                  "Green": 102,
-                  "Blue": 153
-                },
-                "ColorPressed": {
-                  "Green": 153,
-                  "Blue": 204
-                },
-                "ColorBorderReleased": {
-                  "Green": 51,
-                  "Blue": 102
-                },
-                "ColorBorderPressed": {
-                  "Red": 51,
-                  "Green": 102,
-                  "Blue": 153
-                }
-              }
-            ]
-          },
-          {
-            "Type": "FlexButton",
-            "Name": "flexButton1_1",
-            "X": 75,
-            "Y": 112,
-            "Width": 48,
-            "Height": 49,
-            "ButtonTrigger": {
-              "Type": "RepeatButtonTrigger",
-              "Delay": 200,
-              "Interval": 50
-            },
-            "ButtonStyles": [
-              {
-                "Type": "IconButtonStyle",
+                "Type": "ButtonWithIcon",
+                "Name": "moveLeftButton",
+                "X": 103,
+                "Y": 190,
+                "Width": 60,
+                "Height": 60,
+                "LockPosition": true,
+                "Pressed": "__generated\\dark_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
+                "Released": "__generated\\dark_theme_images_widgets_button_icon_rounded_tiny_fill_normal.png",
+                "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_50_50_E8F6FB.svg.png",
                 "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_50_50_E8F6FB.svg.png",
-                "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_left_50_50_E8F6FB.svg.png"
+                "IconX": 5,
+                "IconY": 5,
+                "IconHeight": 50,
+                "IconWidth": 50,
+                "Preset": "dark_theme\\presets\\button\\icon\\rounded\\tiny_fill_normal.json"
               },
               {
-                "Type": "BoxWithBorderButtonStyle",
-                "Width": 48,
-                "Height": 49,
-                "LockToFlexButtonSize": true,
+                "Type": "ButtonWithIcon",
+                "Name": "moveRightButton",
+                "X": 201,
+                "Y": 190,
+                "Width": 60,
+                "Height": 60,
+                "LockPosition": true,
+                "Pressed": "__generated\\dark_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
+                "Released": "__generated\\dark_theme_images_widgets_button_icon_rounded_tiny_fill_normal.png",
+                "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_right_50_50_E8F6FB.svg.png",
+                "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_right_50_50_E8F6FB.svg.png",
+                "IconX": 5,
+                "IconY": 5,
+                "IconHeight": 50,
+                "IconWidth": 50,
+                "Preset": "dark_theme\\presets\\button\\icon\\rounded\\tiny_fill_normal.json"
+              },
+              {
+                "Type": "ButtonWithLabel",
+                "Name": "moveStopButton",
+                "X": 94,
+                "Y": 116,
+                "Width": 175,
+                "Height": 50,
+                "LockPosition": true,
+                "Pressed": "__generated\\dark_theme_images_widgets_button_regular_height_50_small_rounded_pressed.png",
+                "Released": "__generated\\dark_theme_images_widgets_button_regular_height_50_small_rounded_action.png",
+                "TextId": "__SingleUse_NQEL",
+                "ReleasedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "PressedColor": {
+                  "Red": 255,
+                  "Green": 255,
+                  "Blue": 255
+                },
+                "TextRotation": "0",
+                "Preset": "dark_theme\\presets\\button\\regular\\height_50\\small_rounded_action.json"
+              },
+              {
+                "Type": "BoxWithBorder",
+                "Name": "currentPositionBox",
+                "X": 315,
+                "Y": 10,
+                "Width": 112,
+                "Height": 41,
+                "LockPosition": true,
+                "Color": {
+                  "Red": 178,
+                  "Green": 171,
+                  "Blue": 171
+                },
                 "BorderSize": 2,
-                "ColorReleased": {
-                  "Green": 102,
-                  "Blue": 153
+                "Alpha": 120
+              },
+              {
+                "Type": "TextArea",
+                "Name": "currentPositionText",
+                "X": 325,
+                "Y": 18,
+                "Width": 92,
+                "Height": 24,
+                "LockPosition": true,
+                "TextId": "__SingleUse_7YIA",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "__SingleUse_0V3L",
+                  "UseBuffer": true,
+                  "BufferSize": 10
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "currentPositionLabel",
+                "X": 71,
+                "Y": 18,
+                "Width": 191,
+                "Height": 19,
+                "LockPosition": true,
+                "TextId": "__SingleUse_GWQ6",
+                "TextRotation": "0",
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "hardStopLabel",
+                "X": 310,
+                "Y": 170,
+                "Width": 79,
+                "Height": 19,
+                "LockPosition": true,
+                "TextId": "__SingleUse_EQ9D",
+                "TextRotation": "0",
+                "AutoSize": true
+              },
+              {
+                "Type": "BoxWithBorder",
+                "Name": "currentSpeedBox",
+                "X": 315,
+                "Y": 61,
+                "Width": 112,
+                "Height": 41,
+                "LockPosition": true,
+                "Color": {
+                  "Red": 178,
+                  "Green": 171,
+                  "Blue": 171
                 },
-                "ColorPressed": {
-                  "Green": 153,
-                  "Blue": 204
+                "BorderSize": 2,
+                "Alpha": 120
+              },
+              {
+                "Type": "TextArea",
+                "Name": "currentSpeedText",
+                "X": 325,
+                "Y": 69,
+                "Width": 92,
+                "Height": 24,
+                "LockPosition": true,
+                "TextId": "__SingleUse_C8RX",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "__SingleUse_7TLV",
+                  "UseBuffer": true,
+                  "BufferSize": 10
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "currentSpeedLabel",
+                "X": 71,
+                "Y": 69,
+                "Width": 192,
+                "Height": 19,
+                "LockPosition": true,
+                "TextId": "__SingleUse_VRE0",
+                "TextRotation": "0",
+                "AutoSize": true
+              },
+              {
+                "Type": "ToggleButton",
+                "Name": "hardStopButton",
+                "X": 289,
+                "Y": 194,
+                "Width": 138,
+                "Height": 50,
+                "LockPosition": true,
+                "InitialStatePressed": true,
+                "Pressed": "__generated\\dark_theme_images_widgets_togglebutton_medium_rounded_text_off_normal.png",
+                "Released": "__generated\\dark_theme_images_widgets_togglebutton_medium_rounded_text_on_dark.png",
+                "Preset": "dark_theme\\presets\\togglebutton\\medium\\rounded_text.json"
+              }
+            ]
+          },
+          {
+            "Type": "Container",
+            "Name": "settingsContainer",
+            "X": 11,
+            "Y": -1,
+            "Width": 469,
+            "Height": 272,
+            "LockPosition": true,
+            "Components": [
+              {
+                "Type": "ButtonWithIcon",
+                "Name": "speedDownButton",
+                "X": 429,
+                "Y": 144,
+                "Width": 36,
+                "Height": 36,
+                "Pressed": "__generated\\dark_theme_images_widgets_button_icon_rounded_micro_fill_pressed.png",
+                "Released": "__generated\\dark_theme_images_widgets_button_icon_rounded_micro_fill_normal.png",
+                "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_down_50_50_E8F6FB.svg.png",
+                "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_down_50_50_E8F6FB.svg.png",
+                "IconX": -7,
+                "IconY": -7,
+                "IconHeight": 50,
+                "IconWidth": 50,
+                "Preset": "dark_theme\\presets\\button\\icon\\rounded\\micro_fill_normal.json"
+              },
+              {
+                "Type": "ButtonWithIcon",
+                "Name": "speedUpButton",
+                "X": 429,
+                "Y": 103,
+                "Width": 36,
+                "Height": 36,
+                "Pressed": "__generated\\dark_theme_images_widgets_button_icon_rounded_micro_fill_pressed.png",
+                "Released": "__generated\\dark_theme_images_widgets_button_icon_rounded_micro_fill_normal.png",
+                "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_up_50_50_E8F6FB.svg.png",
+                "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_up_50_50_E8F6FB.svg.png",
+                "IconX": -7,
+                "IconY": -7,
+                "IconHeight": 50,
+                "IconWidth": 50,
+                "Preset": "dark_theme\\presets\\button\\icon\\rounded\\micro_fill_normal.json"
+              },
+              {
+                "Type": "BoxWithBorder",
+                "Name": "speedBox",
+                "X": 309,
+                "Y": 121,
+                "Width": 112,
+                "Height": 41,
+                "Color": {
+                  "Red": 178,
+                  "Green": 171,
+                  "Blue": 171
                 },
-                "ColorBorderReleased": {
-                  "Green": 51,
-                  "Blue": 102
+                "BorderSize": 1,
+                "Alpha": 120
+              },
+              {
+                "Type": "TextArea",
+                "Name": "speedText",
+                "X": 319,
+                "Y": 129,
+                "Width": 92,
+                "Height": 24,
+                "TextId": "__SingleUse_YAR7",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "__SingleUse_YAUB",
+                  "UseBuffer": true,
+                  "BufferSize": 10
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "accelerationText",
+                "X": 421,
+                "Y": 194,
+                "Width": 44,
+                "Height": 27,
+                "TextId": "__SingleUse_FRT8",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "__SingleUse_4VX0",
+                  "UseBuffer": true,
+                  "BufferSize": 6
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "deccelerationText",
+                "X": 421,
+                "Y": 236,
+                "Width": 44,
+                "Height": 27,
+                "TextId": "__SingleUse_DKQN",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "__SingleUse_B6EG",
+                  "UseBuffer": true,
+                  "BufferSize": 6
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "speedLabel",
+                "X": 292,
+                "Y": 97,
+                "Width": 128,
+                "Height": 19,
+                "TextId": "__SingleUse_HWDJ",
+                "TextRotation": "0",
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "deccelerationLabel",
+                "X": 11,
+                "Y": 197,
+                "Width": 184,
+                "Height": 19,
+                "TextId": "__SingleUse_LQWD",
+                "TextRotation": "0",
+                "AutoSize": true
+              },
+              {
+                "Type": "TextArea",
+                "Name": "accelerationLabel",
+                "Y": 239,
+                "Width": 195,
+                "Height": 19,
+                "TextId": "__SingleUse_U4IV",
+                "TextRotation": "0",
+                "AutoSize": true
+              },
+              {
+                "Type": "ButtonWithIcon",
+                "Name": "stepDownButton",
+                "X": 429,
+                "Y": 55,
+                "Width": 36,
+                "Height": 36,
+                "Pressed": "__generated\\dark_theme_images_widgets_button_icon_rounded_micro_fill_pressed.png",
+                "Released": "__generated\\dark_theme_images_widgets_button_icon_rounded_micro_fill_normal.png",
+                "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_down_50_50_E8F6FB.svg.png",
+                "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_down_50_50_E8F6FB.svg.png",
+                "IconX": -7,
+                "IconY": -7,
+                "IconHeight": 50,
+                "IconWidth": 50,
+                "Preset": "dark_theme\\presets\\button\\icon\\rounded\\micro_fill_normal.json"
+              },
+              {
+                "Type": "ButtonWithIcon",
+                "Name": "stepUpButton",
+                "X": 429,
+                "Y": 14,
+                "Width": 36,
+                "Height": 36,
+                "Pressed": "__generated\\dark_theme_images_widgets_button_icon_rounded_micro_fill_pressed.png",
+                "Released": "__generated\\dark_theme_images_widgets_button_icon_rounded_micro_fill_normal.png",
+                "IconPressed": "__generated\\icon_theme_images_hardware_keyboard_arrow_up_50_50_E8F6FB.svg.png",
+                "IconReleased": "__generated\\icon_theme_images_hardware_keyboard_arrow_up_50_50_E8F6FB.svg.png",
+                "IconX": -7,
+                "IconY": -7,
+                "IconHeight": 50,
+                "IconWidth": 50,
+                "Preset": "dark_theme\\presets\\button\\icon\\rounded\\micro_fill_normal.json"
+              },
+              {
+                "Type": "BoxWithBorder",
+                "Name": "stepBox",
+                "X": 309,
+                "Y": 32,
+                "Width": 112,
+                "Height": 41,
+                "Color": {
+                  "Red": 178,
+                  "Green": 171,
+                  "Blue": 171
                 },
-                "ColorBorderPressed": {
-                  "Red": 51,
-                  "Green": 102,
-                  "Blue": 153
+                "BorderSize": 1,
+                "Alpha": 120
+              },
+              {
+                "Type": "BoxWithBorder",
+                "Name": "stepBox_1",
+                "X": 35,
+                "Y": 29,
+                "Width": 200,
+                "Height": 130,
+                "Color": {
+                  "Red": 178,
+                  "Green": 171,
+                  "Blue": 171
+                },
+                "BorderSize": 1,
+                "Alpha": 120
+              },
+              {
+                "Type": "TextArea",
+                "Name": "stepText",
+                "X": 320,
+                "Y": 40,
+                "Width": 92,
+                "Height": 24,
+                "TextId": "__SingleUse_U5KL",
+                "TextRotation": "0",
+                "Wildcard1": {
+                  "TextId": "stepTarget",
+                  "UseBuffer": true,
+                  "BufferSize": 10
+                }
+              },
+              {
+                "Type": "TextArea",
+                "Name": "stepLabel",
+                "X": 291,
+                "Y": 9,
+                "Width": 130,
+                "Height": 19,
+                "TextId": "__SingleUse_2MA8",
+                "TextRotation": "0",
+                "AutoSize": true
+              },
+              {
+                "Type": "Slider",
+                "Name": "accelerationSlider",
+                "X": 195,
+                "Y": 195,
+                "Width": 224,
+                "Height": 24,
+                "IsHorizontalSlider": true,
+                "BackgroundUnselected": "__generated\\dark_theme_images_widgets_slider_horizontal_thin_track_small.png",
+                "BackgroundSelected": "__generated\\dark_theme_images_widgets_slider_horizontal_thin_filler_small.png",
+                "Indicator": "__generated\\dark_theme_images_widgets_slider_horizontal_thin_rounded_light.png",
+                "BackgroundX": 12,
+                "BackgroundY": 9,
+                "IndicatorMax": 200,
+                "ValueMax": 32767,
+                "ValueMin": 1,
+                "InitValue": 48,
+                "Preset": "dark_theme\\presets\\slider\\horizontal\\thin\\small_rounded.json"
+              },
+              {
+                "Type": "Slider",
+                "Name": "deccelerationSlider",
+                "X": 195,
+                "Y": 236,
+                "Width": 224,
+                "Height": 24,
+                "IsHorizontalSlider": true,
+                "BackgroundUnselected": "__generated\\dark_theme_images_widgets_slider_horizontal_thin_track_small.png",
+                "BackgroundSelected": "__generated\\dark_theme_images_widgets_slider_horizontal_thin_filler_small.png",
+                "Indicator": "__generated\\dark_theme_images_widgets_slider_horizontal_thin_rounded_light.png",
+                "BackgroundX": 12,
+                "BackgroundY": 9,
+                "IndicatorMax": 200,
+                "ValueMax": 32767,
+                "InitValue": 48,
+                "Preset": "dark_theme\\presets\\slider\\horizontal\\thin\\small_rounded.json"
+              },
+              {
+                "Type": "StaticGraph",
+                "Name": "motionGraph",
+                "X": 40,
+                "Y": 34,
+                "Width": 190,
+                "Height": 120,
+                "DataSeed": -1911010081,
+                "NumberOfValues": 4,
+                "MaxX": 100.0,
+                "PrecisionX": "1",
+                "MaxY": 100.0,
+                "PrecisionY": "1",
+                "XAxisScale": 1.0,
+                "InsertRandomValues": true,
+                "GraphDrawers": [
+                  {
+                    "Type": "LineDrawer",
+                    "LineWidth": 2,
+                    "FileNameImage": "",
+                    "Color": {
+                      "Red": 196,
+                      "Green": 22,
+                      "Blue": 22
+                    }
+                  }
+                ],
+                "XAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Interval": 10.0,
+                  "LineWidth": 1,
+                  "Alpha": 100
+                },
+                "YAxisGrid": {
+                  "Type": "GraphGrid",
+                  "Interval": 10.0,
+                  "LineWidth": 1,
+                  "Alpha": 100
+                },
+                "XAxisLabel": {
+                  "Type": "GraphLabel",
+                  "Interval": 10.0,
+                  "DecimalSeparator": "Point",
+                  "TextColor": {
+                    "Red": 20,
+                    "Green": 151,
+                    "Blue": 197
+                  },
+                  "TextId": "__SingleUse_EB5G",
+                  "TextRotation": "0",
+                  "Position": "Bottom"
+                },
+                "YAxisLabel": {
+                  "Type": "GraphLabel",
+                  "Interval": 10.0,
+                  "DecimalSeparator": "Point",
+                  "TextColor": {
+                    "Red": 20,
+                    "Green": 151,
+                    "Blue": 197
+                  },
+                  "TextId": "__SingleUse_0SXC",
+                  "TextRotation": "0",
+                  "Position": "Left"
                 }
               }
             ]
           },
           {
-            "Type": "FlexButton",
-            "Name": "flexButton2",
-            "X": 191,
-            "Y": 111,
-            "Width": 98,
-            "Height": 50,
-            "ButtonTrigger": {
-              "Type": "ClickButtonTrigger"
-            },
-            "ButtonStyles": [
+            "Type": "Container",
+            "Name": "infoContainer",
+            "X": 45,
+            "Width": 435,
+            "Height": 272,
+            "Visible": false,
+            "LockPosition": true,
+            "Components": [
               {
-                "Type": "BoxWithBorderButtonStyle",
-                "Width": 98,
-                "Height": 50,
-                "LockToFlexButtonSize": true,
-                "BorderSize": 5,
-                "ColorReleased": {
-                  "Red": 153
-                },
-                "ColorPressed": {
+                "Type": "QRCode",
+                "Name": "infoQRCode",
+                "X": 307,
+                "Y": 82,
+                "Width": 111,
+                "Height": 111,
+                "LockPosition": true,
+                "QRVersion": 5,
+                "Scale": 3,
+                "Text": "github.com/lime7git",
+                "BackgroundColor": {
                   "Red": 255,
-                  "Blue": 4
-                },
-                "ColorBorderReleased": {
-                  "Red": 102
-                },
-                "ColorBorderPressed": {
-                  "Red": 250,
-                  "Green": 12,
-                  "Blue": 12
+                  "Green": 255,
+                  "Blue": 255
                 }
+              }
+            ]
+          },
+          {
+            "Type": "SlideMenu",
+            "Name": "slideMenuLeft",
+            "Width": 92,
+            "Height": 272,
+            "LockPosition": true,
+            "FileNameBackground": "left_slide_menu_background.png",
+            "UseButton": true,
+            "FileNameButtonPressed": "left_slide_menu_button.png",
+            "FileNameButtonReleased": "left_slide_menu_button.png",
+            "ButtonX": 68,
+            "ButtonY": 110,
+            "State": "Collapsed",
+            "ExpandDirection": "East",
+            "Easing": "Cubic",
+            "EasingOption": "InOut",
+            "AnimationDuration": 300,
+            "VisiblePixelsWhenCollapsed": 25,
+            "ExpandedStateTimeout": 3000,
+            "Components": [
+              {
+                "Type": "ButtonWithIcon",
+                "Name": "settingsButton",
+                "X": 4,
+                "Y": 75,
+                "Width": 60,
+                "Height": 60,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_normal.png",
+                "Alpha": 200,
+                "IconPressed": "__generated\\icon_theme_images_action_settings_50_50_E8F6FB.svg.png",
+                "IconReleased": "__generated\\icon_theme_images_action_settings_50_50_E8F6FB.svg.png",
+                "IconX": 5,
+                "IconY": 5,
+                "IconHeight": 50,
+                "IconWidth": 50,
+                "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_normal.json"
+              },
+              {
+                "Type": "ButtonWithIcon",
+                "Name": "infoButton",
+                "X": 4,
+                "Y": 140,
+                "Width": 60,
+                "Height": 60,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_normal.png",
+                "Alpha": 200,
+                "IconPressed": "__generated\\icon_theme_images_action_info_50_50_E8F6FB.svg.png",
+                "IconReleased": "__generated\\icon_theme_images_action_info_50_50_E8F6FB.svg.png",
+                "IconX": 5,
+                "IconY": 5,
+                "IconHeight": 50,
+                "IconWidth": 50,
+                "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_normal.json"
+              },
+              {
+                "Type": "ButtonWithIcon",
+                "Name": "deinitializeButton",
+                "X": 4,
+                "Y": 205,
+                "Width": 60,
+                "Height": 60,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_normal.png",
+                "Alpha": 200,
+                "IconPressed": "__generated\\icon_theme_images_action_power_settings_new_50_50_E8F6FB.svg.png",
+                "IconReleased": "__generated\\icon_theme_images_action_power_settings_new_50_50_E8F6FB.svg.png",
+                "IconX": 5,
+                "IconY": 5,
+                "IconHeight": 50,
+                "IconWidth": 50,
+                "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_normal.json"
+              },
+              {
+                "Type": "ButtonWithIcon",
+                "Name": "moveButton",
+                "X": 4,
+                "Y": 10,
+                "Width": 60,
+                "Height": 60,
+                "Pressed": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_pressed.png",
+                "Released": "__generated\\alternate_theme_images_widgets_button_icon_rounded_tiny_fill_normal.png",
+                "Alpha": 200,
+                "IconPressed": "__generated\\icon_theme_images_action_open_with_50_50_E8F6FB.svg.png",
+                "IconReleased": "__generated\\icon_theme_images_action_open_with_50_50_E8F6FB.svg.png",
+                "IconX": 5,
+                "IconY": 5,
+                "IconHeight": 50,
+                "IconWidth": 50,
+                "Preset": "alternate_theme\\presets\\button\\icon\\rounded\\tiny_fill_normal.json"
               }
             ]
           }
@@ -234,7 +840,7 @@
             "InteractionName": "leftArrow",
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "flexButton1"
+              "TriggerComponent": "moveLeftButton"
             },
             "Action": {
               "Type": "ActionCustom",
@@ -245,7 +851,7 @@
             "InteractionName": "rightArrow",
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "flexButton1_1"
+              "TriggerComponent": "moveRightButton"
             },
             "Action": {
               "Type": "ActionCustom",
@@ -256,11 +862,235 @@
             "InteractionName": "stop",
             "Trigger": {
               "Type": "TriggerClicked",
-              "TriggerComponent": "flexButton2"
+              "TriggerComponent": "moveStopButton"
             },
             "Action": {
               "Type": "ActionCustom",
               "FunctionName": "stop"
+            }
+          },
+          {
+            "InteractionName": "Interaction1",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "moveButton"
+            },
+            "Action": {
+              "Type": "ActionShow",
+              "ActionComponent": "moveContainer"
+            }
+          },
+          {
+            "InteractionName": "Interaction2",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "deinitializeButton"
+            },
+            "Action": {
+              "Type": "ActionGotoScreen",
+              "ScreenTransitionType": "ScreenTransitionBlock",
+              "ActionComponent": "Initial"
+            }
+          },
+          {
+            "InteractionName": "Interaction3",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "settingsButton"
+            },
+            "Action": {
+              "Type": "ActionShow",
+              "ActionComponent": "settingsContainer"
+            }
+          },
+          {
+            "InteractionName": "Interaction4",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "settingsButton"
+            },
+            "Action": {
+              "Type": "ActionHide",
+              "ActionComponent": "moveContainer"
+            }
+          },
+          {
+            "InteractionName": "Interaction5",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "moveButton"
+            },
+            "Action": {
+              "Type": "ActionHide",
+              "ActionComponent": "settingsContainer"
+            }
+          },
+          {
+            "InteractionName": "Interaction6",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "moveButton"
+            },
+            "Action": {
+              "Type": "ActionHide",
+              "ActionComponent": "infoContainer"
+            }
+          },
+          {
+            "InteractionName": "Interaction7",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "settingsButton"
+            },
+            "Action": {
+              "Type": "ActionHide",
+              "ActionComponent": "infoContainer"
+            }
+          },
+          {
+            "InteractionName": "Interaction8",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "infoButton"
+            },
+            "Action": {
+              "Type": "ActionHide",
+              "ActionComponent": "settingsContainer"
+            }
+          },
+          {
+            "InteractionName": "Interaction9",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "infoButton"
+            },
+            "Action": {
+              "Type": "ActionHide",
+              "ActionComponent": "moveContainer"
+            }
+          },
+          {
+            "InteractionName": "Interaction10",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "infoButton"
+            },
+            "Action": {
+              "Type": "ActionShow",
+              "ActionComponent": "infoContainer"
+            }
+          },
+          {
+            "InteractionName": "speedButtonDownClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "speedDownButton"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "speedButtonDownClicked"
+            }
+          },
+          {
+            "InteractionName": "stepButtonDownClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "stepDownButton"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "stepButtonDownClicked"
+            }
+          },
+          {
+            "InteractionName": "speedButtonUpClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "speedUpButton"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "speedButtonUpClicked"
+            }
+          },
+          {
+            "InteractionName": "stepButtonUpClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "stepUpButton"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "stepButtonUpClicked"
+            }
+          },
+          {
+            "InteractionName": "hardStopButtonClicked",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "hardStopButton"
+            },
+            "Action": {
+              "Type": "ActionCustom",
+              "FunctionName": "hardStopButtonClicked"
+            }
+          },
+          {
+            "InteractionName": "Interaction11",
+            "Trigger": {
+              "Type": "TriggerSliderValueChanged",
+              "TriggerComponent": "accelerationSlider"
+            },
+            "Action": {
+              "Type": "ActionExecuteCode",
+              "Code": "Unicode::snprintf(accelerationTextBuffer, ACCELERATIONTEXT_SIZE, \"%d\", accelerationSlider.getValue());\r\naccelerationText.invalidate();"
+            }
+          },
+          {
+            "InteractionName": "Interaction12",
+            "Trigger": {
+              "Type": "TriggerSliderValueChanged",
+              "TriggerComponent": "deccelerationSlider"
+            },
+            "Action": {
+              "Type": "ActionExecuteCode",
+              "Code": "Unicode::snprintf(deccelerationTextBuffer, DECCELERATIONTEXT_SIZE, \"%d\", deccelerationSlider.getValue());\r\ndeccelerationText.invalidate();"
+            }
+          },
+          {
+            "InteractionName": "Interaction13",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "infoButton"
+            },
+            "Action": {
+              "Type": "ActionSetState",
+              "State": "Collapsed",
+              "ActionComponent": "slideMenuLeft"
+            }
+          },
+          {
+            "InteractionName": "Interaction14",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "moveButton"
+            },
+            "Action": {
+              "Type": "ActionSetState",
+              "State": "Collapsed",
+              "ActionComponent": "slideMenuLeft"
+            }
+          },
+          {
+            "InteractionName": "Interaction15",
+            "Trigger": {
+              "Type": "TriggerClicked",
+              "TriggerComponent": "settingsButton"
+            },
+            "Action": {
+              "Type": "ActionSetState",
+              "State": "Collapsed",
+              "ActionComponent": "slideMenuLeft"
             }
           }
         ]

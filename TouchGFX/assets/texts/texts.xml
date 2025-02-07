@@ -5,11 +5,84 @@
   </Languages>
   <Texts>
     <TextGroup Id="Group1" />
-    <TextGroup Id="Unsorted" />
+    <TextGroup Id="Unsorted">
+      <Text Id="__SingleUse_B6EG" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">48</Translation>
+      </Text>
+      <Text Id="__SingleUse_DKQN" Alignment="Right" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_4VX0" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">48</Translation>
+      </Text>
+      <Text Id="__SingleUse_FRT8" Alignment="Right" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_U4IV" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Decceleration [steps/s²]</Translation>
+      </Text>
+      <Text Id="__SingleUse_LQWD" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Acceleration [steps/s²]</Translation>
+      </Text>
+      <Text Id="__SingleUse_EB5G" Alignment="Left" TypographyId="Small">
+        <Translation Language="GB">&lt;&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_0SXC" Alignment="Right" TypographyId="Small">
+        <Translation Language="GB">&lt;&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_EQ9D" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Hard stop</Translation>
+      </Text>
+      <Text Id="__SingleUse_7TLV" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_C8RX" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_VRE0" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Current speed [steps/s]</Translation>
+      </Text>
+      <Text Id="__SingleUse_0V3L" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">0</Translation>
+      </Text>
+      <Text Id="__SingleUse_7YIA" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_GWQ6" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Current position [steps]</Translation>
+      </Text>
+      <Text Id="__SingleUse_NQEL" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">STOP</Translation>
+      </Text>
+      <Text Id="__SingleUse_YAUB" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">48</Translation>
+      </Text>
+      <Text Id="stepTarget" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">3072</Translation>
+      </Text>
+      <Text Id="__SingleUse_YAR7" Alignment="Right" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_HWDJ" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Speed [steps/s]</Translation>
+      </Text>
+      <Text Id="__SingleUse_2MA8" Alignment="Left" TypographyId="Default">
+        <Translation Language="GB">Distance [steps]</Translation>
+      </Text>
+      <Text Id="__SingleUse_U5KL" Alignment="Right" TypographyId="Default">
+        <Translation Language="GB">&lt;value&gt;</Translation>
+      </Text>
+      <Text Id="__SingleUse_C4VB" Alignment="Center" TypographyId="Large">
+        <Translation Language="GB">Powerstep01 - GUI</Translation>
+      </Text>
+      <Text Id="__SingleUse_V3V5" Alignment="Center" TypographyId="Small">
+        <Translation Language="GB">Initialize</Translation>
+      </Text>
+    </TextGroup>
   </Texts>
   <Typographies>
-    <Typography Id="Default" Font="verdana.ttf" Size="20" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Default" Font="verdana.ttf" Size="16" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WildcardCharacters="-" WildcardCharacterRanges="0-9" />
     <Typography Id="Large" Font="verdana.ttf" Size="40" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
-    <Typography Id="Small" Font="verdana.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" />
+    <Typography Id="Small" Font="SISER06.ttf" Size="10" Bpp="4" IsVector="no" Direction="LTR" FallbackCharacter="?" WidgetWildcardCharacters="-., 0123456789" />
   </Typographies>
 </TextDatabase>

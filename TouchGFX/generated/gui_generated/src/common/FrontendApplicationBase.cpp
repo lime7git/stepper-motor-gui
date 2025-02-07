@@ -11,8 +11,8 @@
 #include <platform/driver/lcd/LCD16bpp.hpp>
 #include <gui/initial_screen/InitialView.hpp>
 #include <gui/initial_screen/InitialPresenter.hpp>
-#include <gui/screen1_screen/Screen1View.hpp>
-#include <gui/screen1_screen/Screen1Presenter.hpp>
+#include <gui/main_screen/MainView.hpp>
+#include <gui/main_screen/MainPresenter.hpp>
 
 using namespace touchgfx;
 
@@ -23,6 +23,7 @@ FrontendApplicationBase::FrontendApplicationBase(Model& m, FrontendHeap& heap)
       model(m)
 {
     touchgfx::HAL::getInstance()->setDisplayOrientation(touchgfx::ORIENTATION_LANDSCAPE);
+    touchgfx::Texts::setLanguage(GB);
     reinterpret_cast<touchgfx::LCD16bpp&>(touchgfx::HAL::lcd()).enableTextureMapperAll();
     reinterpret_cast<touchgfx::LCD16bpp&>(touchgfx::HAL::lcd()).enableDecompressorL8_All();
     reinterpret_cast<touchgfx::LCD16bpp&>(touchgfx::HAL::lcd()).enableDecompressorRGB();
@@ -45,15 +46,26 @@ void FrontendApplicationBase::gotoInitialScreenNoTransitionImpl()
     touchgfx::makeTransition<InitialView, InitialPresenter, touchgfx::NoTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }
 
-// Screen1
-
-void FrontendApplicationBase::gotoScreen1ScreenBlockTransition()
+void FrontendApplicationBase::gotoInitialScreenBlockTransition()
 {
-    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoScreen1ScreenBlockTransitionImpl);
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoInitialScreenBlockTransitionImpl);
     pendingScreenTransitionCallback = &transitionCallback;
 }
 
-void FrontendApplicationBase::gotoScreen1ScreenBlockTransitionImpl()
+void FrontendApplicationBase::gotoInitialScreenBlockTransitionImpl()
 {
-    touchgfx::makeTransition<Screen1View, Screen1Presenter, touchgfx::BlockTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+    touchgfx::makeTransition<InitialView, InitialPresenter, touchgfx::BlockTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
+}
+
+// Main
+
+void FrontendApplicationBase::gotoMainScreenBlockTransition()
+{
+    transitionCallback = touchgfx::Callback<FrontendApplicationBase>(this, &FrontendApplicationBase::gotoMainScreenBlockTransitionImpl);
+    pendingScreenTransitionCallback = &transitionCallback;
+}
+
+void FrontendApplicationBase::gotoMainScreenBlockTransitionImpl()
+{
+    touchgfx::makeTransition<MainView, MainPresenter, touchgfx::BlockTransition, Model >(&currentScreen, &currentPresenter, frontendHeap, &currentTransition, &model);
 }

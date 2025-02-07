@@ -33,15 +33,15 @@
 /**************************** Speed Profile *********************************/
 /// Register : ACC
 /// Acceleration rate in step/s2, range 14.55 to 59590 steps/s^2 
-#define POWERSTEP01_CONF_PARAM_ACC_DEVICE_0 (1600)
+#define POWERSTEP01_CONF_PARAM_ACC_DEVICE_0 (512)
 
 /// Register : DEC
 /// Deceleration rate in step/s2, range 14.55 to 59590 steps/s^2
-#define POWERSTEP01_CONF_PARAM_DEC_DEVICE_0 (1600)
+#define POWERSTEP01_CONF_PARAM_DEC_DEVICE_0 (512)
 
 ///Register : MAX_SPEED
 /// Maximum speed in step/s, range 15.25 to 15610 steps/s
-#define POWERSTEP01_CONF_PARAM_MAX_SPEED_DEVICE_0 (1600)
+#define POWERSTEP01_CONF_PARAM_MAX_SPEED_DEVICE_0 (3072)
 
 /// Register : MIN_SPEED 
 /// Minimum speed in step/s, range 0 to 976.3 steps/s
@@ -49,7 +49,7 @@
 
 /// Register : FS_SPD 
 /// Full step speed in step/s, range 7.63 to 15625 steps/s
-#define POWERSTEP01_CONF_PARAM_FS_SPD_DEVICE_0 (2500)
+#define POWERSTEP01_CONF_PARAM_FS_SPD_DEVICE_0 (5000)
 
 /// Register : FS_SPD - field : BOOST_MODE 
 /// Boost of the amplitude square wave, enum powerstep01_BoostMode_t
@@ -59,19 +59,19 @@
 /************************ Voltage mode parameters  **************************/
 /// Register : KVAL_ACC 
 /// Acceleration duty cycle (torque) in %, range 0 to 99.6%
-#define POWERSTEP01_CONF_PARAM_KVAL_ACC_DEVICE_0 (16.02)
+#define POWERSTEP01_CONF_PARAM_KVAL_ACC_DEVICE_0 (35)
 
 /// Register : KVAL_DEC 
 /// Deceleration duty cycle (torque) in %, range 0 to 99.6%
-#define POWERSTEP01_CONF_PARAM_KVAL_DEC_DEVICE_0 (16.02)
+#define POWERSTEP01_CONF_PARAM_KVAL_DEC_DEVICE_0 (35)
 
 /// Register : KVAL_RUN 
 /// Run duty cycle (torque) in %, range 0 to 99.6%
-#define POWERSTEP01_CONF_PARAM_KVAL_RUN_DEVICE_0 (16.02)
+#define POWERSTEP01_CONF_PARAM_KVAL_RUN_DEVICE_0 (35)
 
 /// Register : KVAL_HOLD 
 /// Hold duty cycle (torque) in %, range 0 to 99.6%
-#define POWERSTEP01_CONF_PARAM_KVAL_HOLD_DEVICE_0 (16.02)
+#define POWERSTEP01_CONF_PARAM_KVAL_HOLD_DEVICE_0 (10)
 
 /// Register : CONFIG - field : EN_VSCOMP 
 /// Motor Supply Voltage Compensation enabling , enum powerstep01_ConfigEnVscomp_t
@@ -87,7 +87,7 @@
 
 /// Register : INT_SPEED 
 /// Intersect speed settings for BEMF compensation in steps/s, range 0 to 3906 steps/s
-#define POWERSTEP01_CONF_PARAM_INT_SPD_DEVICE_0 (61.512)
+#define POWERSTEP01_CONF_PARAM_INT_SPD_DEVICE_0 (1)
 
 /// Register : ST_SLP 
 /// BEMF start slope settings for BEMF compensation in % step/s, range 0 to 0.4% s/step
@@ -159,11 +159,11 @@
 
 /// Register : GATECFG1 - field : IGATE 
 /// Gate sink/source current via enum powerstep01_Igate_t 
-#define POWERSTEP01_CONF_PARAM_IGATE_DEVICE_0      (POWERSTEP01_IGATE_64mA)
+#define POWERSTEP01_CONF_PARAM_IGATE_DEVICE_0      (POWERSTEP01_IGATE_8mA)
 
 /// Register : CONFIG - field : VCCVAL 
 /// VCC Val, enum powerstep01_ConfigVccVal_t 
-#define POWERSTEP01_CONF_PARAM_VCCVAL_DEVICE_0 (POWERSTEP01_CONFIG_VCCVAL_15V)
+#define POWERSTEP01_CONF_PARAM_VCCVAL_DEVICE_0 (POWERSTEP01_CONFIG_VCCVAL_7_5V)
 
 /// Register : CONFIG - field : UVLOVAL 
 /// UVLO Threshold via powerstep01_ConfigUvLoVal_t 
@@ -214,11 +214,11 @@
 
 /// Register : STEP_MODE - field : STEP_MODE 
 /// Step mode settings via enum motorStepMode_t 
-#define POWERSTEP01_CONF_PARAM_STEP_MODE_DEVICE_0 (STEP_MODE_1_8)
+#define POWERSTEP01_CONF_PARAM_STEP_MODE_DEVICE_0 (STEP_MODE_1_32)
 
 /// Register : STEP_MODE - field : CM_VM 
 /// Current mode or Voltage mode via enum powerstep01_CmVm_t 
-#define POWERSTEP01_CONF_PARAM_CM_VM_DEVICE_0 (POWERSTEP01_CM_VM_CURRENT)
+#define POWERSTEP01_CONF_PARAM_CM_VM_DEVICE_0 (POWERSTEP01_CM_VM_VOLTAGE)
 
 /// Register : STEP_MODE - Field : SYNC_MODE and SYNC_EN 
 /// Synch. Mode settings via enum powerstep01_SyncSel_t 

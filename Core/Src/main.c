@@ -184,12 +184,6 @@ int main(void)
 
 	BSP_MotorControl_CmdSoftHiZ(0);
 
-	uint8_t ret = (uint8_t)BSP_MotorControl_IsDeviceBusy(0);
-
-//
-//	BSP_TS_Init(480, 272);
-
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
